@@ -1,10 +1,16 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+# Ativa modo debug se DEBUG=1
+[[ "${DEBUG:-0}" == "1" ]] && set -x
 
 BASE_MODEL=tessdata_best/por.traineddata
 CHECKPOINT=models/por_custom_checkpoint
 OUTPUT=models/por_custom
+
+for f in "$BASE_MODEL" models/list.train models/list.eval "$CHECKPOINT"; do
+  [[ -e "$f" ]] || { echo "ERRO: arquivo $f inexistente" >&2; exit 1; }
+done
 
 echo ">> Fine-tuning (10 iterações)…"
 lstmtraining \
@@ -24,4 +30,5 @@ lstmtraining \
 
 
 echo "✅ Fine-tuning concluído, modelo em models/por_custom.traineddata"
+
 

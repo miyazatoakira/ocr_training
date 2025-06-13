@@ -1,6 +1,14 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+# Ativa modo debug se DEBUG=1
+[[ "${DEBUG:-0}" == "1" ]] && set -x
+
+if [[ ! -d data/train ]]; then
+  echo "ERRO: diretorio data/train inexistente" >&2
+  exit 1
+fi
+
 echo ">> 1/2 – Normalizando ground-truth"
 for gt in data/train/*.gt.txt; do
   echo "   $gt"
@@ -21,11 +29,12 @@ for gt in data/train/*.gt.txt; do
 done
 
 echo ">> 2/2 – Gerando .lstmf"
-find data/train -name '*.tif' | while read img; do
+find data/train -name '*.tif' | while read -r img; do
   tesseract "$img" "${img%.*}" --psm 6 lstm.train
 done
 
 echo "✅ .lstmf atualizados."
+
 
 
 
