@@ -1,10 +1,3 @@
-# ocr_training
- (cd "$(git rev-parse --show-toplevel)" && git apply --3way <<'EOF' 
-diff --git a/README.md b/README.md
-index 1f8e5171193814dd22440f8b21980f9e9c80efb6..bcff780f64c2ed397d1839a086f313fa739e0d93 100644
---- a/README.md
-+++ b/README.md
-@@ -1 +1,27 @@
  # ocr_training
 +
 +Scripts para treinamento de modelos OCR com Tesseract.
