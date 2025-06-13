@@ -1,8 +1,6 @@
-# Builds training and evaluation lists for Tesseract
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Ativa modo debug se DEBUG=1
 [[ "${DEBUG:-0}" == "1" ]] && set -x
 
 mkdir -p models

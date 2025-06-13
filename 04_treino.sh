@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Ativa modo debug se DEBUG=1
 [[ "${DEBUG:-0}" == "1" ]] && set -x
 
 BASE_MODEL=tessdata_best/por.traineddata
@@ -29,6 +28,4 @@ lstmtraining \
   --model_output "$OUTPUT"
 
 
-echo "✅ Fine-tuning concluído, modelo em models/por_custom.traineddata"
-
-
+echo "Fine-tuning concluído, modelo em models/por_custom.traineddata"

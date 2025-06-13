@@ -1,13 +1,12 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Ativa modo debug se DEBUG=1
+# p/ modo debug se DEBUG=1
 [[ "${DEBUG:-0}" == "1" ]] && set -x
 
 mkdir -p data/train
 fc-cache -fv fonts/
 
-# Garante que ha fontes disponiveis
 shopt -s nullglob
 fonts=(fonts/*.ttf)
 if (( ${#fonts[@]} == 0 )); then
@@ -15,7 +14,6 @@ if (( ${#fonts[@]} == 0 )); then
   exit 1
 fi
 
-# Verifica dependencias basicas
 for cmd in fc-query text2image; do
   command -v "$cmd" >/dev/null 2>&1 || { echo "ERRO: comando $cmd nao encontrado" >&2; exit 1; }
 done

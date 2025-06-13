@@ -2,11 +2,9 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Ativa modo debug se DEBUG=1
 [[ "${DEBUG:-0}" == "1" ]] && set -x
 
 # Testa OCR em uma imagem usando o novo modelo.
-
 if [[ $# -ne 1 ]]; then
   echo "Uso: $0 caminho/da_imagem.png" >&2
   exit 1
@@ -22,9 +20,3 @@ command -v tesseract >/dev/null 2>&1 || { echo "ERRO: tesseract nao encontrado" 
 
 echo ">> OCR de $IMG usando por_custom:"
 tesseract "$IMG" stdout -l por_custom --psm 6
-
-
-
-
-
-

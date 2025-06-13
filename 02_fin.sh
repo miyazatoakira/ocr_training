@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Ativa modo debug se DEBUG=1
 [[ "${DEBUG:-0}" == "1" ]] && set -x
 
 if [[ ! -d data/train ]]; then
@@ -22,7 +21,7 @@ for gt in data/train/*.gt.txt; do
     s/[–—]/-/g;
     s/⅓/1\\/3/g;
     s/⅔/2\\/3/g;
-    s/🚀//g;
+    s/!!!//g;
     s/\xC2\xA0/ /g;
     s/\xE2\x80\xAF/ /g
   " "$gt"
@@ -33,8 +32,4 @@ find data/train -name '*.tif' | while read -r img; do
   tesseract "$img" "${img%.*}" --psm 6 lstm.train
 done
 
-echo "✅ .lstmf atualizados."
-
-
-
-
+echo "Arquivos .lstmf atualizados."
